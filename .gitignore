@@ -1,0 +1,17 @@
+node_modules
+dist
+
+# Environment variables — never commit these
+.env
+.env.local
+.env.production
+
+# SQLite databases — never commit data
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Prisma generated client files
+src/generated/
+/generated/prisma
