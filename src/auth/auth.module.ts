@@ -18,8 +18,8 @@ import { JwtRefreshStrategy } from './jwt-refresh.strategy';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get<string>('JWT_SECRET') as string,
-        signOptions: { expiresIn: config.get('JWT_EXPIRES_IN', '60m') as any },
+        secret: (process.env.JWT_SECRET || config.get<string>('JWT_SECRET')) as string,
+        signOptions: { expiresIn: (process.env.JWT_EXPIRES_IN || config.get('JWT_EXPIRES_IN', '60m')) as any },
       }),
     }),
   ],
