@@ -5,6 +5,13 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  // Debug: print which env vars are present at startup
+  const required = ['JWT_SECRET', 'JWT_REFRESH_SECRET', 'DATABASE_URL'];
+  required.forEach((key) => {
+    const val = process.env[key];
+    console.log(`[ENV] ${key}: ${val ? `SET (${val.length} chars)` : 'MISSING'}`);
+  });
+
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
 
